@@ -9,6 +9,8 @@ import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
+
 import edu.wuwang.opengl.BaseActivity;
 import edu.wuwang.opengl.R;
 import java.util.List;
@@ -27,6 +29,9 @@ public class VrContextActivity extends BaseActivity implements GLSurfaceView.Ren
     private SkySphere mSkySphere;
 
     private float[] matrix=new float[16];
+    private final static String tag = "sensor";
+    private static long time1;
+    private static long count = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,7 +54,9 @@ public class VrContextActivity extends BaseActivity implements GLSurfaceView.Ren
     @Override
     protected void onResume() {
         super.onResume();
-        mSensorManager.registerListener(this,mRotation,SensorManager.SENSOR_DELAY_GAME);
+        mSensorManager.registerListener(this,mRotation,SensorManager.SENSOR_DELAY_UI);
+        time1 = System.currentTimeMillis();
+        Log.i(tag,"resume");
         mGLView.onResume();
     }
 
@@ -58,6 +65,7 @@ public class VrContextActivity extends BaseActivity implements GLSurfaceView.Ren
         super.onPause();
         mSensorManager.unregisterListener(this);
         mGLView.onPause();
+        Log.i(tag,"pause");
     }
 
     @Override
@@ -83,7 +91,15 @@ public class VrContextActivity extends BaseActivity implements GLSurfaceView.Ren
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        Log.i(tag,"changed");
+        count++;
         SensorManager.getRotationMatrixFromVector(matrix,event.values);
+        long time_cur =System.currentTimeMillis();
+        StringBuffer bf =new StringBuffer();
+        bf.append(1000/((time_cur-time1)/count));
+        StringBuffer bf_time =new StringBuffer();
+        bf_time.append((time_cur-time1)/count);
+        Log.i(tag,"频率："+ bf.toString()+" 时间差："+bf_time.toString()+" count: "+count);
         mSkySphere.setMatrix(matrix);
     }
 
