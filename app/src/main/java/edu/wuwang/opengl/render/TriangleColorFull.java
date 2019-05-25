@@ -72,13 +72,17 @@ public class TriangleColorFull extends Shape {
 
     public TriangleColorFull(View mView) {
         super(mView);
-        ByteBuffer bb = ByteBuffer.allocateDirect(
-                triangleCoords.length * 4);
-        bb.order(ByteOrder.nativeOrder());
-
-        vertexBuffer = bb.asFloatBuffer();
-        vertexBuffer.put(triangleCoords);
+        //ByteBuffer bb = ByteBuffer.allocateDirect(
+              //  triangleCoords.length * 4);
+        //bb.order(ByteOrder.nativeOrder());
+        //vertexBuffer = bb.asFloatBuffer();
+        //vertexBuffer.put(triangleCoords);
+        //可以改为：
+        vertexBuffer=ByteBuffer.allocateDirect(triangleCoords.length*4)
+                .order(ByteOrder.nativeOrder())
+                .asFloatBuffer().put(triangleCoords);
         vertexBuffer.position(0);
+
         ByteBuffer dd = ByteBuffer.allocateDirect(
                 color.length * 4);
         dd.order(ByteOrder.nativeOrder());
@@ -111,9 +115,9 @@ public class TriangleColorFull extends Shape {
         //计算宽高比
         float ratio=(float)width/height;
         //设置透视投影
-        Matrix.frustumM(mProjectMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
+        Matrix.frustumM(mProjectMatrix, 0, -ratio, ratio, -1, 1, 3, 10);
         //设置相机位置
-        Matrix.setLookAtM(mViewMatrix, 0, 0, 0, 7.0f, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
+        Matrix.setLookAtM(mViewMatrix, 0, 0, 0, 5.0f, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
         //计算变换矩阵
         Matrix.multiplyMM(mMVPMatrix,0,mProjectMatrix,0,mViewMatrix,0);
     }

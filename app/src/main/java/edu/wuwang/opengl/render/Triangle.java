@@ -19,7 +19,7 @@ import javax.microedition.khronos.opengles.GL10;
 /**
  * Description:
  */
-public class Triangle extends Shape {
+public class  Triangle extends Shape {
 
     private FloatBuffer vertexBuffer;
     private final String vertexShaderCode =
