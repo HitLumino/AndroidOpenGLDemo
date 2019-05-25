@@ -1,8 +1,3 @@
----
-typora-root-url: Note_images
----
-
-[TOC]
 
 本文主要根据[作者博客](https://blog.csdn.net/junzia/article/details/52793354)以及demo展示，配合文字图片进行相应的解读，纯属笔记。
 
@@ -20,13 +15,13 @@ typora-root-url: Note_images
 
 >  对于发送给GPU的每一个顶点，都要执行一次顶点着色器。其功能是把每个顶点在虚拟空间中的三维坐标变换为可以在屏幕上显示的二维坐标，并带有用于z-buffer的深度信息。**顶点着色器可以操作的属性有：位置、颜色、纹理坐标，但是不能创建新的顶点。**
 
-![vertex着色器](/vertex着色器.png)
+![vertex着色器](Note_images/vertex着色器.png)
 
 ##### 片元着色器
 
 > 片元着色器计算每个像素的颜色和其它属性。**它通过应用光照值、凹凸贴图，阴影，镜面高光，半透明等处理来计算像素的颜色并输出。**它也可改变像素的深度(z-buffering)或在多个渲染目标被激活的状态下输出多种颜色。一个片元着色器不能产生复杂的效果，因为它只在一个像素上进行操作，而不知道场景的几何形状。
 
-![fragment着色器](/fragment着色器.png)
+![fragment着色器](Note_images/fragment着色器.png)
 
 代码示例：
 
@@ -61,7 +56,7 @@ private final String vertexShaderCode =
 >
 > 投影分为2种，正交投影（**orthoM**），透视投影（**frustumM** ）。
 
-![投影](/投影.png)
+![投影](Note_images/投影.png)
 
 * 使用正交投影，物体呈现出来的大小不会随着其距离视点的远近而发生变化。
 * 使用透视投影，物体离视点越远，呈现出来的越小。离视点越近，呈现出来的越大。
