@@ -21,7 +21,7 @@ import javax.microedition.khronos.opengles.GL10;
 /**
  * Description:
  */
-public class Square extends Shape {
+public class  Square extends Shape {
 
     private FloatBuffer vertexBuffer;
     private ShortBuffer indexBuffer;
@@ -46,7 +46,7 @@ public class Square extends Shape {
             -0.5f,  0.5f, 0.0f, // top left
             -0.5f, -0.5f, 0.0f, // bottom left
             0.5f, -0.5f, 0.0f, // bottom right
-            0.5f,  0.5f, 0.0f  // top right
+            0.5f,  0.5f, 0.0f,  // top right
     };
 
     static short index[]={
@@ -68,7 +68,7 @@ public class Square extends Shape {
     private int mMatrixHandler;
 
     //设置颜色，依次为红绿蓝和透明通道
-    float color[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    float color[] = { 0.0f, 1.0f, 1.0f, 1.0f };
 
     public Square(View mView) {
         super(mView);
@@ -138,7 +138,7 @@ public class Square extends Shape {
         //设置绘制三角形的颜色
         GLES20.glUniform4fv(mColorHandle, 1, color, 0);
         //绘制三角形
-//        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, vertexCount);
+        //GLES20.glDrawArrays(GLES20.GL_TRIANGLE_FAN, 0, vertexCount);
         //索引法绘制正方形
         GLES20.glDrawElements(GLES20.GL_TRIANGLES,index.length, GLES20.GL_UNSIGNED_SHORT,indexBuffer);
         //禁止顶点数组的句柄
