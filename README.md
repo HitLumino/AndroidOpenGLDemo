@@ -1,4 +1,5 @@
 # 说明
+
 这是一个Android OpenGLES2.0 从零开始的Demo程序，仅做个人学习OpenGLES的记录，并提供给后来初学者参考。若有相关问题，也非常乐意与大家一起讨论共同进步。
 关于Android OpenGLES2.0学习的博客，也相当于这个Demo的讲解，在CSDN平台上的[链接地址](http://blog.csdn.net/junzia/article/category/6462864)。
 
