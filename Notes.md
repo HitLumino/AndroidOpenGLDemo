@@ -5,7 +5,7 @@
 
 > 主要绘制三角形，矩形，球等基础形状，可以学习到openglES基本知识。比如varying,uniform attribute等shader限定符基本用法。
 
-### 三角形
+### 三角形.
 
 #### 着色器语言
 
